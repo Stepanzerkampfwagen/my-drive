@@ -16,7 +16,6 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useRouter } from 'vue-router'
 
-// 1️⃣ Схема регистрации
 const registerSchema = toTypedSchema(z.object({
   email: z.string().email(),
   password: z.string().min(6),
@@ -26,12 +25,10 @@ const registerSchema = toTypedSchema(z.object({
   path: ["confirmPassword"]
 }))
 
-// 2️⃣ Форма
 const form = useForm({
   validationSchema: registerSchema,
 })
 
-// 3️⃣ Обработчик сабмита
 const router = useRouter()
 const onSubmit = form.handleSubmit(async (values) => {
   try {
@@ -41,9 +38,6 @@ const onSubmit = form.handleSubmit(async (values) => {
   } catch (error) {
     console.error(error)
   }
-  // Тут вызов API NestJS: POST /auth/register
-  // Например: await api.register(values)
-  // Если успех -> router.push('/login')
 })
 </script>
 
@@ -52,7 +46,6 @@ const onSubmit = form.handleSubmit(async (values) => {
     <form @submit="onSubmit" class="w-full max-w-sm p-6 bg-white rounded-xl shadow space-y-4">
       <h1 class="text-xl font-bold text-center">Регистрация</h1>
 
-      <!-- Email -->
       <FormField v-slot="{ componentField }" name="email">
         <FormItem>
           <FormLabel>Email</FormLabel>
@@ -63,7 +56,6 @@ const onSubmit = form.handleSubmit(async (values) => {
         </FormItem>
       </FormField>
 
-      <!-- Password -->
       <FormField v-slot="{ componentField }" name="password">
         <FormItem>
           <FormLabel>Пароль</FormLabel>
@@ -74,7 +66,6 @@ const onSubmit = form.handleSubmit(async (values) => {
         </FormItem>
       </FormField>
 
-      <!-- Confirm Password -->
       <FormField v-slot="{ componentField }" name="confirmPassword">
         <FormItem>
           <FormLabel>Повторите пароль</FormLabel>

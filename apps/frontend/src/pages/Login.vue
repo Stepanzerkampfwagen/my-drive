@@ -16,18 +16,15 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useRouter } from 'vue-router'
 
-// 1. Создаём схему Zod для логина
 const loginSchema = toTypedSchema(z.object({
   email: z.string().email(),
   password: z.string().min(6),
 }))
 
-// 2. Создаём форму
 const form = useForm({
   validationSchema: loginSchema,
 })
 
-// 3. Обработчик сабмита
 const router = useRouter()
 const onSubmit = form.handleSubmit(async (values) => {
   try {
@@ -37,18 +34,14 @@ const onSubmit = form.handleSubmit(async (values) => {
   } catch (error) {
     console.error(error)
   }
-  // Тут можно вызвать API NestJS: POST /auth/login
-  // Например: const res = await api.login(values)
-  // Если успех — router.push('/dashboard')
 })
 </script>
 
 <template>
   <div class="flex items-center justify-center min-h-screen bg-gray-50">
     <form @submit="onSubmit" class="w-full max-w-sm p-6 bg-white rounded-xl shadow space-y-4">
-      <h1 class="text-xl font-bold text-center">Login</h1>
+      <h1 class="text-xl font-bold text-center">Войти</h1>
 
-      <!-- Email -->
       <FormField v-slot="{ componentField }" name="email">
         <FormItem>
           <FormLabel>Email</FormLabel>
@@ -59,10 +52,9 @@ const onSubmit = form.handleSubmit(async (values) => {
         </FormItem>
       </FormField>
 
-      <!-- Password -->
       <FormField v-slot="{ componentField }" name="password">
         <FormItem>
-          <FormLabel>Password</FormLabel>
+          <FormLabel>Пароль</FormLabel>
           <FormControl>
             <Input type="password" placeholder="******" v-bind="componentField" />
           </FormControl>
@@ -70,7 +62,7 @@ const onSubmit = form.handleSubmit(async (values) => {
         </FormItem>
       </FormField>
 
-      <Button type="submit" class="w-full">Login</Button>
+      <Button type="submit" class="w-full">Войти</Button>
       <p class="text-center text-sm text-gray-500">
         Нет аккаунта?
         <router-link to="/register" class="text-blue-600 hover:underline">Зарегистрироваться</router-link>

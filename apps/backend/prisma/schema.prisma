@@ -13,3 +13,12 @@ model User {
   passwordHash String
   createdAt    DateTime @default(now())
 }
+
+model File {
+  id        Int      @id @default(autoincrement())
+  name      String
+  path      String
+  size      Int
+  mimeType  String
+  createdAt DateTime @default(now())
+}
