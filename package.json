@@ -1,0 +1,11 @@
+{
+  "name": "my-drive",
+  "private": "true",
+  "version": "1.0.0",
+  "scripts": {
+    "dev:frontend": "pnpm --filter frontend dev",
+    "dev:backend": "pnpm --filter backend start:dev",
+    "dev": "pnpm -r run dev",
+    "build": "pnpm -r run build"
+  }
+}
